@@ -1,0 +1,24 @@
+===============================
+Behave tests
+===============================
+What changes would you make to the features to make them better for testing?
+ - It would be a good idea to add IDs (or names) to the web elements in the tested application.
+ - The extra white-space characters should be removed from the "      Welcome Dr I Test" line.
+ - It is confusing when a web element with the same class is used at two different pages (e.g. article with class="pa4 black-80 content"). It would be good if the log-in page and the welcome page did not use the same element.
+ 
+
+Are there any features that you think should be added to improve the testing?
+ - The email address format validator should be added to the testing (i.e. when typing "test" in email field, a pop-up message appears).
+ - Static texts should be validated as well (e.g. "Worlds Best App", "Login").
+ - Log-out feature can be validated as well (i.e. page reload logs out).
+ - The documentation and specification of the web application should be checked, to identify any features which are left out from testing.
+ 
+
+===============================
+Postman tests
+===============================
+Can the test be improved in any way?
+ - The API test should also cover the Header errors (e.g. calling the app with bad Content-Type)
+ - A test case could validate if the correct attributes were sent in the body (no extra elements, required elements are sent)
+ - Test bad formatted JSON messages (i.e. syntax error in the message).
+ - The documentation and specification of the web application should be checked, to identify any specific use-cases the interface should be able to handle.
