@@ -13,4 +13,4 @@ Feature: Login
     When the user enters username
     And the user enters password
     And clicks Login
-    Then the user is presented with a error message
+    Then the user is presented with an error message

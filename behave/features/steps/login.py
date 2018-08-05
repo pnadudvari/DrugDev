@@ -1,41 +1,70 @@
 from behave import *
+from selenium.common.exceptions import TimeoutException
+import selenium.webdriver.support.ui as ui
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+
+TEST_URL = "https://sprinkle-burn.glitch.me/"
+EMAIL_LOCATOR = "//input[contains(@type,'email')]"
+PASSWORD_LOCATOR = "//input[contains(@type,'password')]"
+LOGIN_BUTTON_LOCATOR = "//button[contains(text(),'Login')]"
 
 
 @given(u'the user has the correct credentials')
 def step_impl(context):
-    context.browser.get('http://www.google.com')
-    raise NotImplementedError(
-        u'STEP: Given the user has the correct credentials')
+    context.browser.get(TEST_URL)
+    global user
+    global password
+    user = "test@drugdev.com"
+    password = "supers3cret"
 
 
-@when(u'the enter username')
+@when(u'the user enters username')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When the enter username')
+    context.browser.find_element(By.XPATH, EMAIL_LOCATOR).send_keys(user)
 
 
 @when(u'the user enters password')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When the user enters password')
+    context.browser.find_element(By.XPATH, PASSWORD_LOCATOR).send_keys(password)
 
 
 @when(u'clicks Login')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When clicks Login')
+    context.browser.find_element(By.XPATH, LOGIN_BUTTON_LOCATOR).click()
 
 
 @then(u'the user is presented with a welcome message')
 def step_impl(context):
-    raise NotImplementedError(
-        u'STEP: Then the user is presented with a welcome message')
+    wait_until_visible_text(context.browser, "Welcome Dr I Test")
+    should_be_equal_as_strings(context.browser, "Welcome Dr I Test")
 
 
 @given(u'the user has the incorrect credentials')
 def step_impl(context):
-    raise NotImplementedError(
-        u'STEP: Given the user has the incorrect credentials')
+    context.browser.get(TEST_URL)
+    global user
+    global password
+    user = ""
+    password = ""
 
 
-@then(u'the user is presented with a error message')
+@then(u'the user is presented with an error message')
 def step_impl(context):
-    raise NotImplementedError(
-        u'STEP: Then the user is presented with a error message')
+    wait_until_visible_text(context.browser, "Credentials are incorrect")
+    should_be_equal_as_strings(context.browser, "Credentials are incorrect")
+
+
+def wait_until_visible_text(driver, text, timeout=2):
+    locator = "//*[text()[contains(.,'" + text + "')]]"
+    try:
+        ui.WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, locator)))
+        return True
+    except TimeoutException:
+        return False
+
+
+def should_be_equal_as_strings(driver, text):
+    locator = "//*[text()[contains(.,'" + text + "')]]"
+    assert text == driver.find_element(By.XPATH, locator).text
