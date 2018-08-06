@@ -11,14 +11,28 @@ Are there any features that you think should be added to improve the testing?
  - The email address format validator should be added to the testing (i.e. when typing "test" in email field, a pop-up message appears).
  - Static texts should be validated as well (e.g. "Worlds Best App", "Login").
  - Log-out feature can be validated as well (i.e. page reload logs out).
+ - SQL injection could be checked.
  - The documentation and specification of the web application should be checked, to identify any features which are left out from testing.
  
 
 ===============================
 Postman tests
 ===============================
+Important note to the tests: The application returned HTML code 200 instead of 401. I decided to duplicate the test, and have one to test for 200 and another for 401. This way, one test will fail for sure. I'd need more information (e.g. read the specification, talk to a developer) to decide if the application works fine. Depending on this, either the test needs to be fixed or a bug ticket needs to be raised.
+
 Can the test be improved in any way?
  - The API test should also cover the Header errors (e.g. calling the app with bad Content-Type)
  - A test case could validate if the correct attributes were sent in the body (no extra elements, required elements are sent)
  - Test bad formatted JSON messages (i.e. syntax error in the message).
+ - There should be a separate test for each bad format for all bad format types the code handles different. To find out which cases should be checked, I would collect information from the developers.
+ - SQL injection could be checked. 
  - The documentation and specification of the web application should be checked, to identify any specific use-cases the interface should be able to handle.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
