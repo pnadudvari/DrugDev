@@ -24,7 +24,7 @@ Can the test be improved in any way?
  - The API test should also cover the Header errors (e.g. calling the app with bad Content-Type)
  - A test case could validate if the correct attributes were sent in the body (no extra elements, required elements are sent)
  - Test bad formatted JSON messages (i.e. syntax error in the message).
- - There should be a separate test for each bad format for all bad format types the code handles different. To find out which cases should be checked, I would collect information from the developers.
+ - There should be a separate test for each bad format types the code handles different. To find out which cases should be checked, I would collect information from the developers.
  - SQL injection could be checked. 
  - The documentation and specification of the web application should be checked, to identify any specific use-cases the interface should be able to handle.
  
